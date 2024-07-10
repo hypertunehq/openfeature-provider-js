@@ -1,0 +1,14 @@
+{
+  "name": "@openfeature/hypertune-providers",
+  "packageManager": "npm@9.4.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "base-version": "npm run version --workspace=packages/shared",
+    "update-base-peers": "export HYPERTUNE_BASE_VERSION=$(npm run --silent core-version) && npm run update-core-peer --workspace=packages/server --workspace=packages/client"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.6"
+  }
+}
