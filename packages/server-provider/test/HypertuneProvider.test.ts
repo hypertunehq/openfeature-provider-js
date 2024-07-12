@@ -542,7 +542,7 @@ test("HypertuneProvider", async () => {
       name: "Test User",
       email: "test@hypertune.com",
     },
-  })
+  });
   const client = OpenFeature.getClient();
 
   // Simple flags.
@@ -554,12 +554,14 @@ test("HypertuneProvider", async () => {
   expect(await client.getNumberValue("integerFlag", 0)).toBe(10);
   expect(await client.getNumberValue("floatFlag", 0)).toBe(2.5);
 
-  // Nested values 
+  // Nested values
   expect(await client.getBooleanValue("group.booleanFlag", false)).toBe(true);
   expect(await client.getStringValue("group.stringFlag", "Fallback")).toBe(
     "NestedString"
   );
-  expect(await client.getStringValue("group.enumFlag", "Fallback")).toBe("test");
+  expect(await client.getStringValue("group.enumFlag", "Fallback")).toBe(
+    "test"
+  );
 
   // Event behaves like a boolean flag.
   expect(await client.getBooleanValue("event", false)).toBe(true);
@@ -576,7 +578,8 @@ test("HypertuneProvider", async () => {
       "stringFlag": "NestedString",
     }
   `);
-  expect(await client.getBooleanDetails("stringFlag", false)).toMatchInlineSnapshot(`
+  expect(await client.getBooleanDetails("stringFlag", false))
+    .toMatchInlineSnapshot(`
     {
       "errorCode": "TYPE_MISMATCH",
       "errorMessage": "Invalid value type for flagKey "stringFlag" expected "boolean" got "string".",

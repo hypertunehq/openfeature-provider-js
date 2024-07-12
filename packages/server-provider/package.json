@@ -6,6 +6,7 @@
   "scripts": {
     "prepack": "cp ../../LICENSE ./LICENSE.txt",
     "postpack": "rm ./LICENSE.txt",
+    "lint": "eslint ./",
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "compile": "tsc -b tsconfig.cjs.json tsconfig.esm.json tsconfig.types.json",
@@ -23,10 +24,7 @@
     "@hypertune/openfeature-base-provider": "0.0.6"
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.5.3",
-    "vitest": "^2.0.2"
+    "@hypertune/openfeature-base-provider": "0.0.6"
   },
   "repository": {
     "type": "git",

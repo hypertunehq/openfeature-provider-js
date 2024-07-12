@@ -41,7 +41,7 @@ export class HypertuneProviderBase {
       NodeConstructor: Node,
       options,
     });
-    this.postCreate()
+    this.postCreate();
   }
 
   protected postCreate(): void {}

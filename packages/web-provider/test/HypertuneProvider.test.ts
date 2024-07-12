@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { ErrorCode, OpenFeature } from "@openfeature/web-sdk";
+import { OpenFeature } from "@openfeature/web-sdk";
 import { HypertuneProvider } from "../src/HypertuneProvider";
 import { Expression } from "hypertune/dist/shared";
 
