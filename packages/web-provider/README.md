@@ -52,12 +52,12 @@ if (exampleFlag) {
 
 ### Accessing nested flags
 
-To access nested flag you can simply evaluate a flag with dot separated path to your flag e.g. `backend.exampleFlag`. Values in a list can only be accesses by first evaluating the list flag as an object using the `getObjectValue` method.
+To access nested flags you can use a dot separated path to your flag e.g. `backend.exampleFlag`. Values in a list can only be accessed by first evaluating the list flag as an object using the `getObjectValue` method.
 
 ### Publishing events
 
-To publish an event you can simply evaluate an event trigger using the `getBooleanValue` method.
+To publish an event you can evaluate an event trigger flag using the `getBooleanValue` method.
 
-### Flag arguments
+### Flag-specific arguments
 
-Flag arguments are not supported for individual flags by this OpenFeature provider. Trying to evaluate a flag with arguments with result in an error and the default/fallback value being used. The only way to pass inputs to Hypertune is via the top level context.
+Flag-specific arguments are not supported for individual flags with this OpenFeature provider. Trying to evaluate a flag with arguments will result in an error and the default/fallback value will be used. The only way to pass inputs to Hypertune is via the top level context.
