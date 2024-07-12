@@ -1,13 +1,18 @@
 {
   "name": "@hypertune/openfeature-base-provider",
-  "version": "0.0.1",
-  "private": false,
+  "version": "0.0.6",
   "description": "OpenFeature provider for Hypertune.",
   "license": "Apache-2.0",
   "scripts": {
+    "prepack": "cp ../../LICENSE ./LICENSE.txt",
+    "postpack": "rm ./LICENSE.txt",
+    "version": "echo $npm_package_version",
     "compile": "tsc -b tsconfig.cjs.json tsconfig.esm.json tsconfig.types.json",
     "build:clean": "rm -rf ./build",
-    "build": "npm-run-all build:clean compile && node ../../scripts/prepare-package-json"
+    "build": "npm-run-all build:clean compile && node ../../scripts/prepare-package-json",
+    "deploy:test": "npm publish --dry-run",
+    "deploy:alpha": "npm publish --tag alpha",
+    "deploy:prod": "npm publish"
   },
   "dependencies": {
     "@openfeature/core": "^1.3.0",
@@ -25,10 +30,16 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "main": "./build/cjs/lib.js",
-  "module": "./build/esm/lib.js",
-  "types": "index.d.ts",
+  "main": "./build/cjs/index.js",
+  "module": "./build/esm/index.js",
+  "types": "./build/types/index.d.ts",
   "exports": {
+    ".": {
+      "types": "./build/types/index.d.ts",
+      "require": "./build/cjs/index.js",
+      "import": "./build/esm/index.js",
+      "default": "./build/esm/index.js"
+    },
     "./*": {
       "types": "./build/types/*.d.ts",
       "require": "./build/cjs/*.js",
@@ -105,5 +116,8 @@
     "allowlists",
     "blocklists",
     "magic numbers"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/hypertunehq/openfeature-provider-js/issues"
+  }
 }

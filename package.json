@@ -5,8 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "base-version": "npm run version --workspace=packages/shared",
-    "update-base-peers": "export HYPERTUNE_BASE_VERSION=$(npm run --silent core-version) && npm run update-core-peer --workspace=packages/server --workspace=packages/client"
+    "base-version": "npm run version --workspace=packages/base-provider",
+    "update-base-peers": "export HYPERTUNE_BASE_VERSION=$(npm run --silent base-version) && npm run update-core-peer --workspace=packages/server-provider --workspace=packages/web-provider"
   },
   "devDependencies": {
     "turbo": "^2.0.6"

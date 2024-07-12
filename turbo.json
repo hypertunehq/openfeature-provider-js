@@ -1,13 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "build": {
-      "outputs": ["build/**"]
-    },
     "test": {},
     "test:watch": {
       "cache": false,
       "persistent": true
+    },
+    "build": {
+      "outputs": ["build/**"],
+      "dependsOn": ["test", "^build"]
+    },
+    "deploy:test": {
+      "dependsOn": ["build"]
+    },
+    "deploy:alpha": {
+      "dependsOn": ["deploy:test"]
+    },
+    "deploy:prod": {
+      "dependsOn": ["deploy:test"]
     }
   }
 }

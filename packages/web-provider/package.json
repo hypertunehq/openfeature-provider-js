@@ -4,16 +4,23 @@
   "description": "OpenFeature provider for Hypertune.",
   "license": "Apache-2.0",
   "scripts": {
+    "prepack": "cp ../../LICENSE ./LICENSE.txt",
+    "postpack": "rm ./LICENSE.txt",
     "test": "vitest run",
     "test:watch": "vitest --watch",
     "compile": "tsc -b tsconfig.cjs.json tsconfig.esm.json tsconfig.types.json",
     "build:clean": "rm -rf ./build",
     "build": "npm-run-all build:clean compile && node ../../scripts/prepare-package-json",
-    "update-core-peer": "npm install --save-peer --save-exact @openfeature/core@$HYPERTUNE_BASE_VERSION"
+    "update-core-peer": "npm install -f --save-peer --save-exact @hypertune/openfeature-base-provider@$HYPERTUNE_BASE_VERSION",
+    "deploy:test": "npm publish --dry-run",
+    "deploy:alpha": "npm publish --tag alpha",
+    "deploy:prod": "npm publish"
   },
   "dependencies": {
-    "@hypertune/openfeature-base-provider": "^0.0.1",
     "@openfeature/web-sdk": "^1.2.1"
+  },
+  "peerDependencies": {
+    "@hypertune/openfeature-base-provider": "0.0.6"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
@@ -30,8 +37,14 @@
   },
   "main": "./build/cjs/lib.js",
   "module": "./build/esm/lib.js",
-  "types": "index.d.ts",
+  "types": "./build/types/index.d.ts",
   "exports": {
+    ".": {
+      "types": "./build/types/index.d.ts",
+      "require": "./build/cjs/index.js",
+      "import": "./build/esm/index.js",
+      "default": "./build/esm/index.js"
+    },
     "./*": {
       "types": "./build/types/*.d.ts",
       "require": "./build/cjs/*.js",

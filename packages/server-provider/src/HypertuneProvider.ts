@@ -1,12 +1,10 @@
 import {
   EvaluationContext,
-  InvalidContextError,
   JsonValue,
   OpenFeatureEventEmitter,
   Provider,
   ProviderEvents,
   ResolutionDetails,
-  TypeMismatchError,
 } from "@openfeature/server-sdk";
 import { HypertuneProviderBase } from "@hypertune/openfeature-base-provider";
 
