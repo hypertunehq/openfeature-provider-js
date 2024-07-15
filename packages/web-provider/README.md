@@ -1,6 +1,6 @@
 # Hypertune OpenFeature Web Provider
 
-This package contains a provider for using Hypertune with the OpenFeature [JS Web SDK](https://www.npmjs.com/package/@openfeature/web-sdk). If you want to use Hypertune with OpenFeature on the server then checkout the [Hypertune OpenFeature Server Provider](<https://www.npmjs.com/package/@hypertune/openfeature-server-provider)>).
+This package contains a provider for using Hypertune with the OpenFeature [JS Web SDK](https://www.npmjs.com/package/@openfeature/web-sdk). If you want to use Hypertune with OpenFeature on the server then checkout the [Hypertune OpenFeature Server Provider](https://www.npmjs.com/package/@hypertune/openfeature-server-provider).
 
 ## Hypertune overview
 
