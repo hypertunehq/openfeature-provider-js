@@ -1,6 +1,6 @@
 {
   "name": "@hypertune/openfeature-web-provider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenFeature provider for Hypertune.",
   "license": "Apache-2.0",
   "scripts": {
@@ -21,7 +21,7 @@
     "@openfeature/web-sdk": "^1.2.1"
   },
   "peerDependencies": {
-    "@hypertune/openfeature-base-provider": "0.1.0"
+    "@hypertune/openfeature-base-provider": "0.1.1"
   },
   "devDependencies": {
     "@hypertune/openfeature-base-provider": "0.1.1"
