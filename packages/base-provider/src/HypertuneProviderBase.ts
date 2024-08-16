@@ -1,6 +1,8 @@
 import {
   EvaluationContext,
+  FlagNotFoundError,
   InvalidContextError,
+  ProviderNotReadyError,
   ResolutionDetails,
   TypeMismatchError,
 } from "@openfeature/core";
@@ -21,9 +23,9 @@ export class HypertuneProviderBase {
   constructor({
     token,
     override,
-    query = null,
-    queryCode = "query Full{root{*}}",
-    variableValues = {},
+    query,
+    queryCode,
+    variableValues,
     ...options
   }: {
     token: string;
@@ -38,7 +40,6 @@ export class HypertuneProviderBase {
       queryCode,
       override: override ? { root: override } : null,
       variableValues,
-      NodeConstructor: Node,
       options,
     });
     this.postCreate();
@@ -66,11 +67,18 @@ export class HypertuneProviderBase {
     expectedValueType: "boolean" | "string" | "number" | "any"
   ): ResolutionDetails<T> {
     const root = this.getRoot(context);
+    if (!root.props.context) {
+      throw new ProviderNotReadyError(`Hypertune hasn't been initialized yet, so it can't evaluate flag with key "${flagKey}".`);
+    }
     const fallback = defaultValue as Value;
     const value = flagKey
       .split(".")
       .reduce<Node>((node, step) => {
-        return node.getFieldNode(step, {});
+        const newNode = node.getFieldNode(step, {});
+        if (!newNode.props.expression) {
+          throw new FlagNotFoundError(`Flag with key "${flagKey}" doesn't exist.`);
+        }
+        return newNode;
       }, root)
       .getValue({ fallback });
 
